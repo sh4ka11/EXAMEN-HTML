@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Juego de Memoria - La Dulcería</title>
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+  <header class="game-header">
+    <div class="container">
+      <h1>Juego de Memoria - La Dulcería</h1>
+      <p>Encuentra las parejas y gana un descuento para usar en la tienda (simulado).</p>
+    </div>
+  </header>
+  <main class="container game-area">
+    <div class="game-controls">
+      <div id="errors">Errores: 0 / 3</div>
+      <div id="found">Parejas encontradas: 0</div>
+      <button id="startBtn">Comenzar juego</button>
+    </div>
+    <div id="board" class="board"></div>
+    <div id="result" class="result hidden"></div>
+    <p class="note">Al iniciar, se mostrarán todas las cartas durante 5 segundos. Luego se ocultarán y tendrás que encontrar parejas. Si cometes más de 3 errores, el juego termina.</p>
+  </main>
+  <footer class="game-footer"><div class="container">Este juego es responsive: ábralo con su teléfono escaneando el QR desde la página principal.</div></footer>
+  <script src="game.js"></script>
+</body>
+</html>

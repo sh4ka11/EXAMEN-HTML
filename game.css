@@ -1,0 +1,17 @@
+*{box-sizing:border-box}body{font-family:Inter,Arial,sans-serif;margin:0;background:#fff8f2;color:#333}
+.container{max-width:900px;margin:0 auto;padding:1rem}
+.game-header{background:linear-gradient(90deg,#ffd8a8,#fff);padding:1rem;border-bottom:1px solid rgba(0,0,0,.05)}
+.game-area{padding:1rem}
+.game-controls{display:flex;gap:1rem;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
+.card{background:#fff;border-radius:8px;height:80px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;border:2px solid #fffbf8}
+.card.flipped{background:linear-gradient(90deg,#fff,#ffe9f0)}
+.card.matched{background:linear-gradient(90deg,#d3ffd8,#fff);cursor:default}
+.result{padding:1rem;margin-top:1rem;background:#fff;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.hidden{display:none}
+.note{font-size:.9rem;color:#666;margin-top:1rem}
+@media(max-width:600px){
+  .board{grid-template-columns:repeat(3,1fr)}
+  .card{height:70px;font-size:1.2rem}
+  .game-controls{flex-direction:column;align-items:flex-start}
+}

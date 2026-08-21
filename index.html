@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Atamar - Postres</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <!-- Simple SVG logo. Replace with your real logo if available -->
+        <img src="IMAGENES/LOGO.png" width="48" height="48" viewBox="0 0 24 24" xmlns="IMAGENES/LOGO.png" aria-hidden="true">
+          <circle cx="12" cy="8" r="3" fill="#f28ab2"></circle>
+          <rect x="6" y="11" width="12" height="8" rx="1.5" fill="#ffd8a8"></rect>
+        </img>
+        <h1>Atamar</h1>
+      </div>
+      <nav class="main-nav">
+        <a href="#catalog">Catálogo</a>
+        <a href="#how-it-works">Compra</a>
+        <a href="#qr-game">QR Juego</a>
+      </nav>
+      <div class="cart-toggle" id="cartToggle">Carrito (<span id="cartCount">0</span>)</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="hero" class="hero">
+      <h2>Postres artesanales y deliciosos</h2>
+      <p>Explora nuestro catálogo, agrega productos al carrito y prueba nuestro juego de memoria vía QR para obtener descuentos.</p>
+    </section>
+
+    <section id="catalog" class="catalog">
+      <h3>Catálogo de productos</h3>
+      <div class="product-grid" id="productGrid">
+        <!-- Productos cargados por JavaScript -->
+      </div>
+    </section>
+
+    <aside class="cart" id="cart">
+      <h4>Carrito</h4>
+      <div id="cartItems"></div>
+      <div class="cart-summary">
+        <div>Subtotal: <span id="cartTotal">$0.00</span></div>
+        <button id="checkoutBtn">Finalizar compra (visual)</button>
+      </div>
+    </aside>
+
+    <section id="how-it-works" class="checkout hidden">
+      <h3>Proceso de compra (visual)</h3>
+      <div class="steps" id="checkoutSteps">
+        <!-- pasos visuales -->
+        <div class="step active" data-step="1">
+          <h4>1. Revisión del carrito</h4>
+          <div id="reviewCart"></div>
+          <button class="next-step">Siguiente</button>
+        </div>
+        <div class="step" data-step="2">
+          <h4>2. Información del cliente</h4>
+          <form id="customerForm">
+            <label>Nombre: <input required type="text" name="name"></label>
+            <label>Correo: <input required type="email" name="email"></label>
+            <button type="button" class="next-step">Siguiente</button>
+          </form>
+        </div>
+        <div class="step" data-step="3">
+          <h4>3. Método de pago (simulado)</h4>
+          <div class="payment-options">
+            <label><input type="radio" name="payment" checked> Tarjeta de crédito (simulado)</label>
+            <label><input type="radio" name="payment"> Pago en efectivo (simulado)</label>
+            <label><input type="radio" name="payment"> Transferencia (simulado)</label>
+          </div>
+          <button class="next-step">Siguiente</button>
+        </div>
+        <div class="step" data-step="4">
+          <h4>4. Resumen de la compra</h4>
+          <div id="summary"></div>
+          <button id="confirmOrder">Confirmar (simulado)</button>
+        </div>
+        <div class="step" data-step="5">
+          <h4>5. Confirmación</h4>
+          <p>Gracias por su compra (simulada). Este flujo no realiza pagos reales.</p>
+          <button id="closeCheckout">Cerrar</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="qr-game" class="qr-section">
+      <h3>Sección interactiva mediante QR</h3>
+      <p>Escanee el código QR con su teléfono para acceder al juego de memoria.</p>
+      <div class="qr">
+        <img alt="QR code to open game" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://example.com/game.html" id="qrImg">
+        <p>O abra: <a href="game.html" target="_blank">game.html</a></p>
+      </div>
+     
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Atamar — Diseño y demo con HTML, CSS y JavaScript.</p>
+    </div>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
