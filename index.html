@@ -10,12 +10,10 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <!-- Simple SVG logo. Replace with your real logo if available -->
-        <img src="IMAGENES/LOGO.png" width="48" height="48" viewBox="0 0 24 24" xmlns="IMAGENES/LOGO.png" aria-hidden="true">
-          <circle cx="12" cy="8" r="3" fill="#f28ab2"></circle>
-          <rect x="6" y="11" width="12" height="8" rx="1.5" fill="#ffd8a8"></rect>
-        </img>
-        <h1>Atamar</h1>
+        <button class="brand-toggle" id="brandToggle" type="button" aria-expanded="false" aria-controls="aboutAtamar">
+          <img src="IMAGENES/LOGO.png" alt="Logo de Atamar">
+          <span>Atamar</span>
+        </button>
       </div>
       <nav class="main-nav">
         <a href="#catalog">Catálogo</a>
@@ -30,6 +28,12 @@
     <section id="hero" class="hero">
       <h2>Postres artesanales y deliciosos</h2>
       <p>Explora nuestro catálogo, agrega productos al carrito y prueba nuestro juego de memoria vía QR para obtener descuentos.</p>
+    </section>
+
+    <section id="aboutAtamar" class="about-atamar hidden" aria-hidden="true">
+      <h2>¿Quiénes somos? 🍰✨</h2>
+      <p>ATAMAR es un emprendimiento de postres creado con amor, creatividad e innovación. Nuestro objetivo es ofrecer productos deliciosos y de calidad, combinando la repostería con la tecnología para brindar una experiencia diferente y especial a nuestros clientes.</p>
+      <p>Nos caracterizamos por nuestra creatividad, compromiso y pasión por hacer que cada postre sea más que un producto: una experiencia para disfrutar y recordar. 💕</p>
     </section>
 
     <section id="catalog" class="catalog">

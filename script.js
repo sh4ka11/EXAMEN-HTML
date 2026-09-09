@@ -19,8 +19,17 @@ const checkoutSteps = document.getElementById('checkoutSteps');
 const reviewCart = document.getElementById('reviewCart');
 const summaryEl = document.getElementById('summary');
 const yearEl = document.getElementById('year');
+const brandToggle = document.getElementById('brandToggle');
+const aboutAtamar = document.getElementById('aboutAtamar');
 
 let cart = {};
+
+brandToggle.addEventListener('click', ()=>{
+  const isOpen = aboutAtamar.classList.toggle('hidden');
+  brandToggle.setAttribute('aria-expanded', String(!isOpen));
+  aboutAtamar.setAttribute('aria-hidden', String(isOpen));
+  if(!isOpen) aboutAtamar.scrollIntoView({behavior:'smooth', block:'nearest'});
+});
 
 function formatPrice(v){
   return new Intl.NumberFormat('es-CO', {
