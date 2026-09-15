@@ -18,16 +18,15 @@
       <nav class="main-nav">
         <a href="#catalog">Catálogo</a>
         <a href="#how-it-works">Compra</a>
-        <a href="#qr-game">QR Juego</a>
+        <a href="#qr-game">Descuento</a>
       </nav>
-      <div class="cart-toggle" id="cartToggle">Carrito (<span id="cartCount">0</span>)</div>
+      <button class="cart-toggle" id="cartToggle" type="button">Carrito <span class="cart-badge" id="cartCount">0</span></button>
     </div>
   </header>
 
   <main class="container">
     <section id="hero" class="hero">
-      <h2>Postres artesanales y deliciosos</h2>
-      <p>Explora nuestro catálogo, agrega productos al carrito y prueba nuestro juego de memoria vía QR para obtener descuentos.</p>
+      <div class="hero-copy"><span class="eyebrow">Repostería artesanal</span><h1>Pequeños antojos,<br><em>grandes momentos.</em></h1><p>Postres preparados con ingredientes seleccionados para endulzar tus días. Elige tus favoritos y recibe tu pedido en casa.</p><a class="hero-action" href="#catalog">Explorar catálogo <span>→</span></a></div><div class="hero-stamp"><strong>ATAMAR</strong><span>Hecho con cariño</span></div>
     </section>
 
     <section id="aboutAtamar" class="about-atamar hidden" aria-hidden="true">
@@ -37,18 +36,17 @@
     </section>
 
     <section id="catalog" class="catalog">
-      <h3>Catálogo de productos</h3>
+      <div class="section-heading"><div><span class="eyebrow">Elige tu momento dulce</span><h2>Catálogo de productos</h2></div><p id="productCount" class="product-count"></p></div>
+      <div class="catalog-tools"><label class="search-box" for="productSearch"><span>⌕</span><input id="productSearch" type="search" placeholder="Buscar por nombre o ingrediente..." autocomplete="off"></label><div class="category-tabs" id="categoryTabs" role="tablist" aria-label="Categorías de productos"></div></div>
       <div class="product-grid" id="productGrid">
         <!-- Productos cargados por JavaScript -->
       </div>
     </section>
 
-    <aside class="cart" id="cart">
-      <h4>Carrito</h4>
-      <div id="cartItems"></div>
+    <aside class="cart hidden" id="cart">
+      <div class="cart-heading"><div><span class="eyebrow">Tu selección</span><h4>Carrito</h4></div><button id="closeCart" type="button" aria-label="Cerrar carrito">×</button></div><div id="cartItems"><p class="empty-cart">Tu carrito está vacío.<br>Agrega un postre para comenzar.</p></div>
       <div class="cart-summary">
-        <div>Subtotal: <span id="cartTotal">$0.00</span></div>
-        <button id="checkoutBtn">Finalizar compra (visual)</button>
+        <div class="total-line"><span>Subtotal</span><strong id="cartTotal">$0.00</strong></div><p id="cartDiscountInfo" class="discount-info"></p><div class="total-line total-after"><span>Total</span><strong id="cartTotalAfter">$0.00</strong></div><button id="checkoutBtn">Continuar compra <span>→</span></button>
       </div>
     </aside>
 
@@ -92,14 +90,11 @@
     </section>
 
     <section id="qr-game" class="qr-section">
-      <h3>Sección interactiva mediante QR</h3>
-      <p>Escanee el código QR con su teléfono para acceder al juego de memoria.</p>
-      <div class="qr">
-        <img alt="QR code to open game" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://examen-html-one.vercel.app/game.html" id="qrImg">
-        <p>O abra: <a href="https://examen-html-one.vercel.app/game.html" target="_blank">Juego</a></p>
-      </div>
-     
+      <div><span class="eyebrow">Un premio por jugar</span><h2>Encuentra las parejas<br>y gana hasta 50% OFF</h2><p>Escanea el código con tu teléfono o abre el juego directamente. Tu descuento quedará guardado para usarlo en tu compra.</p><a class="game-link" href="game.html" target="_blank">Jugar ahora <span>↗</span></a></div>
+      <button class="qr qr-trigger" id="qrTrigger" type="button" aria-label="Ampliar código QR"><img alt="Código QR para abrir el juego" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://examen-html-one.vercel.app/game.html" id="qrImg"><span>Toca para ampliar</span></button>
     </section>
+
+    <div class="modal hidden" id="qrModal" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle"><div class="modal-content"><button class="modal-close" id="closeQr" type="button" aria-label="Cerrar código QR">×</button><span class="eyebrow">Escanea para jugar</span><h2 id="qrModalTitle">Tu descuento empieza aquí</h2><img alt="Código QR ampliado para abrir el juego" src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=https://examen-html-one.vercel.app/game.html"><a class="game-link" href="game.html" target="_blank">Abrir juego <span>↗</span></a></div></div>
 
   </main>
 

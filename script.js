@@ -1,10 +1,14 @@
-// Datos de ejemplo - reemplace las imágenes por fotografías reales en assets/
 const products = [
-  {id: 'p1', name: 'Tarta de fresa', desc: 'Tarta casera con fresas naturales', price: 48000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrvsBbvOr_r5Q6ZiKfJ_ol1nkrvKuG7Y6iQAozy2E3O3wDv1CitG6VmU34&s=10'},
-  
-  {id: 'p2', name: 'Cheesecake', desc: 'Cheesecake cremoso con base de galleta', price: 65000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXAOoygrFjXi2kBOta0EM_qWw8OUsvqdti48_uWmiQq_V6iR8aRgHGi-r6&s=10'},
-  
-  {id: 'p3', name: 'Brownie', desc: 'Brownie de chocolate con textura húmeda', price: 29000, img: 'https://happyvegannie.com/wp-content/uploads/2023/07/los-mejores-brownies-fudgy-10-copy.jpg'}
+  {id:'p1', name:'Tarta de fresa', category:'Tartas', desc:'Bizcocho suave, crema y fresas naturales.', price:48000, img:'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=85'},
+  {id:'p2', name:'Cheesecake clásico', category:'Tartas', desc:'Cremoso, con base de galleta dorada.', price:65000, img:'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=800&q=85'},
+  {id:'p3', name:'Brownie intenso', category:'Brownies', desc:'Chocolate 70%, nueces y centro húmedo.', price:29000, img:'https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=800&q=85'},
+  {id:'p4', name:'Brownie con caramelo', category:'Brownies', desc:'Brownie tibio, caramelo salado y nueces.', price:34000, img:'https://images.unsplash.com/photo-1519869325930-281384150729?w=800&q=85'},
+  {id:'p5', name:'Caja de cupcakes', category:'Cupcakes', desc:'Seis cupcakes decorados con crema de vainilla.', price:42000, img:'https://images.unsplash.com/photo-1587668178277-295251f900ce?w=800&q=85'},
+  {id:'p6', name:'Cupcake red velvet', category:'Cupcakes', desc:'Bizcocho aterciopelado y frosting de queso.', price:12000, img:'https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=800&q=85'},
+  {id:'p7', name:'Galletas de chispas', category:'Galletas', desc:'Galletas horneadas con chocolate semiamargo.', price:18000, img:'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800&q=85'},
+  {id:'p8', name:'Alfajores de dulce', category:'Galletas', desc:'Masa suave, dulce de leche y coco.', price:22000, img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&q=85'},
+  {id:'p9', name:'Mousse de chocolate', category:'Postres fríos', desc:'Textura ligera y chocolate de origen.', price:26000, img:'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=800&q=85'},
+  {id:'p10', name:'Vasito de maracuyá', category:'Postres fríos', desc:'Crema cítrica, galleta y pulpa fresca.', price:24000, img:'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=85'}
 ];
 
 const productGrid = document.getElementById('productGrid');
@@ -21,8 +25,13 @@ const summaryEl = document.getElementById('summary');
 const yearEl = document.getElementById('year');
 const brandToggle = document.getElementById('brandToggle');
 const aboutAtamar = document.getElementById('aboutAtamar');
+const searchInput = document.getElementById('productSearch');
+const categoryTabs = document.getElementById('categoryTabs');
+const productCount = document.getElementById('productCount');
+const qrModal = document.getElementById('qrModal');
 
 let cart = {};
+let activeCategory = 'Todos';
 
 brandToggle.addEventListener('click', ()=>{
   const isOpen = aboutAtamar.classList.toggle('hidden');
@@ -40,17 +49,28 @@ function formatPrice(v){
   }).format(v);
 }
 
+function renderCategories(){
+  const categories = ['Todos', ...new Set(products.map(product => product.category))];
+  categoryTabs.innerHTML = categories.map(category => `<button class="category-tab ${category === activeCategory ? 'active' : ''}" type="button" data-category="${category}">${category}</button>`).join('');
+  categoryTabs.querySelectorAll('button').forEach(button => button.addEventListener('click', () => { activeCategory = button.dataset.category; renderCategories(); renderProducts(); }));
+}
+
 function renderProducts(){
   productGrid.innerHTML = '';
-  for(const p of products){
-    const card = document.createElement('div'); card.className = 'card';
+  const query = searchInput.value.trim().toLowerCase();
+  const visibleProducts = products.filter(product => (activeCategory === 'Todos' || product.category === activeCategory) && `${product.name} ${product.desc} ${product.category}`.toLowerCase().includes(query));
+  productCount.textContent = `${visibleProducts.length} ${visibleProducts.length === 1 ? 'producto' : 'productos'}`;
+  if (!visibleProducts.length) { productGrid.innerHTML = '<p class="no-results">No encontramos ese antojo. Prueba con otra búsqueda.</p>'; return; }
+  for(const p of visibleProducts){
+    const card = document.createElement('article'); card.className = 'card';
     const img = document.createElement('img'); img.src = p.img; img.alt = p.name;
+    const category = document.createElement('span'); category.className = 'card-category'; category.textContent = p.category;
     const h = document.createElement('h4'); h.textContent = p.name;
     const d = document.createElement('p'); d.textContent = p.desc;
     const price = document.createElement('div'); price.className='price'; price.textContent = formatPrice(p.price);
-    const btn = document.createElement('button'); btn.textContent = 'Agregar al carrito';
+    const btn = document.createElement('button'); btn.className = 'add-button'; btn.innerHTML = 'Agregar <span>+</span>';
     btn.addEventListener('click', ()=> addToCart(p.id));
-    card.append(img,h,d,price,btn);
+    card.append(img,category,h,d,price,btn);
     productGrid.appendChild(card);
   }
 }
@@ -173,11 +193,17 @@ document.getElementById('closeCheckout').addEventListener('click', ()=> checkout
 
 // cart toggle
 cartToggle.addEventListener('click', ()=>{
-  cart.classList.toggle('hidden');
+  cartEl.classList.toggle('hidden');
 });
+document.getElementById('closeCart').addEventListener('click', ()=> cartEl.classList.add('hidden'));
+searchInput.addEventListener('input', renderProducts);
+document.getElementById('qrTrigger').addEventListener('click', ()=> qrModal.classList.remove('hidden'));
+document.getElementById('closeQr').addEventListener('click', ()=> qrModal.classList.add('hidden'));
+qrModal.addEventListener('click', event => { if(event.target === qrModal) qrModal.classList.add('hidden'); });
+document.addEventListener('keydown', event => { if(event.key === 'Escape') qrModal.classList.add('hidden'); });
 
 // initialize
-renderProducts(); renderCart(); yearEl.textContent = new Date().getFullYear();
+renderCategories(); renderProducts(); renderCart(); yearEl.textContent = new Date().getFullYear();
 
 // Notes for deployment: Replace QR image src data parameter with actual hosted URL for game.html.
 

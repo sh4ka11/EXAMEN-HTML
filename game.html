@@ -8,20 +8,22 @@
 </head>
 <body>
   <header class="game-header">
-    <div class="container">
-      <h1>Juego de Memoria - La Dulcería</h1>
-      <p>Encuentra las parejas y gana un descuento para usar en la tienda (simulado).</p>
+    <div class="container game-header-inner">
+      <a class="back-link" href="index.html">← Volver a Atamar</a>
+      <span class="eyebrow">Reto dulce</span>
+      <h1>Encuentra las parejas</h1>
+      <p>Memoriza los sabores, completa el tablero y desbloquea un descuento para tu próxima compra.</p>
     </div>
   </header>
   <main class="container game-area">
+    <div class="game-intro"><div><span class="eyebrow">Tu partida</span><h2>¿Cuántos puedes recordar?</h2></div><button id="startBtn">Comenzar juego <span>→</span></button></div>
     <div class="game-controls">
-      <div id="errors">Errores: 0 / 3</div>
-      <div id="found">Parejas encontradas: 0</div>
-      <button id="startBtn">Comenzar juego</button>
+      <div><span>ERRORES</span><strong id="errors">0 / 3</strong></div>
+      <div><span>PAREJAS</span><strong id="found">0</strong></div>
     </div>
     <div id="board" class="board"></div>
     <div id="result" class="result hidden"></div>
-    <p class="note">Al iniciar, se mostrarán todas las cartas durante 5 segundos. Luego se ocultarán y tendrás que encontrar parejas. Si cometes más de 3 errores, el juego termina.</p>
+    <p class="note">Al iniciar, podrás observar todas las cartas durante 5 segundos. Luego se ocultarán. Con cada pareja encontrada, tu descuento crece.</p>
   </main>
   <footer class="game-footer"><div class="container">Este juego es responsive: ábralo con su teléfono escaneando el QR desde la página principal.</div></footer>
   <script src="game.js"></script>
